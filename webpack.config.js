@@ -11,6 +11,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     // the filename of the JS bundle will be bundle.js
     filename: "bundle.js",
+    publicPath: "/",
   },
   module: {
     rules: [
@@ -28,10 +29,13 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    historyApiFallback: true,
+  },
   // add a custom index.html as the template
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "", "index.html"),
+      template: "/index.html",
     }),
   ],
 };

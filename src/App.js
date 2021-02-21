@@ -1,6 +1,8 @@
 import React, { lazy, Suspense } from 'react';
 //Suspense is a fallback/waiting component to add spinners, etc, while waiting for fetch to resolve or other async delay
 //Lazy will delay loading the component code until the user navigates to path
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import * as ROUTES from "./constants/routes";
 
 const Dashboard = lazy(() => import("./pages/dashboard"));
 const Login = lazy(() => import("./pages/login"));
@@ -10,8 +12,16 @@ const NotFound = lazy(() => import("./pages/not-found"));
 
 export default function App() {
   return (
-  <Suspense fallback={<p>...Loading</p>}>
-    <p>Loaded content here.</p>
-  </Suspense>
-  )
+    <Router>
+      <Suspense fallback={<p>...Loading</p>}>
+        <Switch>
+          <Route path={ROUTES.LOGIN} component={Login} exact/>
+          <Route path={ROUTES.SIGN_UP} component={SignUp} />
+          <Route path={ROUTES.PROFILE} component={Profile} />
+          <Route path={ROUTES.DASHBOARD} component={Dashboard} exact />
+          <Route path={ROUTES.NOT_FOUND} component={NotFound} />
+        </Switch>
+      </Suspense>
+    </Router>
+  );
 }
