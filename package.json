@@ -1,0 +1,19 @@
+{
+  "name": "instagram-clone",
+  "version": "1.0.0",
+  "description": "An Instagram clone app built with React, Hooks, Router, Tailwind and Firebase.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tets"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kawilliams8/instagram-clone.git"
+  },
+  "author": "Katherine A Williams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kawilliams8/instagram-clone/issues"
+  },
+  "homepage": "https://github.com/kawilliams8/instagram-clone#readme"
+}
