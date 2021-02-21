@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/kawilliams8/instagram-clone/issues"
   },
-  "homepage": "https://github.com/kawilliams8/instagram-clone#readme"
+  "homepage": "https://github.com/kawilliams8/instagram-clone#readme",
+  "dependencies": {
+    "date-fns": "^2.16.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-loading-skeleton": "^2.1.1",
+    "react-router-dom": "^5.2.0"
+  }
 }
