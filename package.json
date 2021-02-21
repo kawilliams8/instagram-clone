@@ -4,7 +4,7 @@
   "description": "An Instagram clone app built with React, Hooks, Router, Tailwind and Firebase.",
   "main": "index.js",
   "scripts": {
-    "test": "tets"
+    "test": "test"
   },
   "repository": {
     "type": "git",
