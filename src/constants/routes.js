@@ -1,3 +1,4 @@
+//Single source of truth for route paths
 export const DASHBOARD = "/";
 export const LOGIN = "/login";
 export const SIGN_UP = "/signup";
