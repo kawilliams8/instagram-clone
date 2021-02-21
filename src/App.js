@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 //Suspense is a fallback/waiting component to add spinners, etc, while waiting for fetch to resolve or other async delay
+//Lazy will delay loading the component code until the user navigates to path
 
 const Dashboard = lazy(() => import("./pages/dashboard"));
 const Login = lazy(() => import("./pages/login"));
