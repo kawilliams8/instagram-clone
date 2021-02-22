@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from '../constants/routes';
 import FirebaseContext from "../context/firebase";
+import "@babel/polyfill";
 
 export default function Login() {
   const { firebase } = useContext(FirebaseContext);
