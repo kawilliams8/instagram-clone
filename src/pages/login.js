@@ -39,6 +39,7 @@ export default function Login() {
               placeholder="Email address"
               value={email}
               onChange={({ target }) => setEmail(target.value)}
+              autoComplete="username"
             />
             <input
               aria-label="Enter your password"
@@ -47,11 +48,12 @@ export default function Login() {
               placeholder="Password"
               value={password}
               onChange={({ target }) => setPassword(target.value)}
+              autoComplete="current-password"
             />
             <button
               type="submit"
               className={`bg-blue-500 text-white w-full rounded h-8 font-bold
-                ${isInvalid && 'cursor-not-allowed opacity-50'}`}
+                ${isInvalid && "cursor-not-allowed opacity-50"}`}
               disabled={isInvalid}
             >
               Log In
