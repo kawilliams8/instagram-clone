@@ -1,13 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from '../constants/routes';
 
 export default function Login() {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const isInvalid = password === '' || email === '';
+
   useEffect(() => {
     document.title = "Instagram - Login";
   }, []);
 
-  const isInvalid = true;
   return (
     <div className="container flex mx-auto max-w-screen-md items-center h-screen">
       <div className="flex w-3/5 p-10">
@@ -31,16 +37,22 @@ export default function Login() {
               className="text-sm w-full mr-3 py-5 px-4 h-2 border rounded mb-2"
               type="text"
               placeholder="Email address"
+              value={email}
+              onChange={({ target }) => setEmail(target.value)}
             />
             <input
               aria-label="Enter your password"
               className="text-sm w-full mr-3 py-5 px-4 h-2 border rounded mb-2"
               type="password"
               placeholder="Password"
+              value={password}
+              onChange={({ target }) => setPassword(target.value)}
             />
             <button
               type="submit"
-              className={`bg-blue-500 text-white w-full rounded h-8 font-bold`}
+              className={`bg-blue-500 text-white w-full rounded h-8 font-bold
+                ${isInvalid && 'cursor-not-allowed opacity-50'}`}
+              disabled={isInvalid}
             >
               Log In
             </button>
