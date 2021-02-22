@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from '../constants/routes';
+import FirebaseContext from "../context/firebase";
 
 export default function Login() {
+  const { firebase } = useContext(FirebaseContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const isInvalid = password === '' || email === '';
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+  };
 
   useEffect(() => {
     document.title = "Instagram - Login";
@@ -52,6 +58,7 @@ export default function Login() {
             />
             <button
               type="submit"
+              onSubmit={handleLogin}
               className={`bg-blue-500 text-white w-full rounded h-8 font-bold
                 ${isInvalid && "cursor-not-allowed opacity-50"}`}
               disabled={isInvalid}
