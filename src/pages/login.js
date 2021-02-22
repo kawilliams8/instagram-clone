@@ -7,6 +7,7 @@ export default function Login() {
     document.title = "Instagram - Login";
   }, []);
 
+  const isInvalid = true;
   return (
     <div className="container flex mx-auto max-w-screen-md items-center h-screen">
       <div className="flex w-3/5 p-10">
