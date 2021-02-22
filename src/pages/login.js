@@ -15,6 +15,15 @@ export default function Login() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
+      try {
+        await firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password);
+      } catch (error) {
+        setEmail("");
+        setPassword("");
+        setError(error.message);
+      }
   };
 
   useEffect(() => {
@@ -38,7 +47,8 @@ export default function Login() {
               className="mt-2 w-6/12 mb-4"
             />
           </h1>
-          <form method="POST">
+          {error && <p className="mb-4 text-xs text-red-500">{error}</p>}
+          <form method="POST" onSubmit={handleLogin}>
             <input
               aria-label="Enter your email address"
               className="text-sm w-full mr-3 py-5 px-4 h-2 border rounded mb-2"
@@ -59,7 +69,6 @@ export default function Login() {
             />
             <button
               type="submit"
-              onSubmit={handleLogin}
               className={`bg-blue-500 text-white w-full rounded h-8 font-bold
                 ${isInvalid && "cursor-not-allowed opacity-50"}`}
               disabled={isInvalid}
