@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from '../constants/routes';
 
 export default function Login() {
+  useEffect(() => {
+    document.title = "Instagram - Login";
+  }, []);
+
   return (
     <div className="container flex mx-auto max-w-screen-md items-center h-screen">
       <div className="flex w-3/5 p-10">
@@ -20,7 +24,6 @@ export default function Login() {
               className="mt-2 w-6/12 mb-4"
             />
           </h1>
-
           <form method="POST">
             <input
               aria-label="Enter your email address"
