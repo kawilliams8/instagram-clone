@@ -15,12 +15,12 @@ export default function Signup() {
   const [error, setError] = useState("");
 
   const newUser = {
-    "dateCreated" : date.now(),
-    "emailAddress" : email,
+    "dateCreated" : Date.now(),
+    "emailAddress" : email.toLowerCase(),
     "followers" : [],
     "following" : [],
     "fullName" : name,
-    "username" : username
+    "username" : username.toLowerCase()
   }
 
   const isInvalid = username === "" || name === "" || password === "" || email === "";
