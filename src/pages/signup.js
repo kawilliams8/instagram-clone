@@ -14,6 +14,31 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const newUser = {
+    "dateCreated" : date.now(),
+    "emailAddress" : email,
+    "followers" : [],
+    "following" : [],
+    "fullName" : name,
+    "username" : username
+  }
+
+  const isInvalid = username === "" || name === "" || password === "" || email === "";
+
+  const handleSignup = async (event) => {
+    event.preventDefault();
+    try {
+      await firebase.auth().createUser(newUser);
+      history.push(ROUTES.DASHBOARD);
+    } catch (error) {
+      setName("");
+      setEmail("");
+      setPassword("");
+      setUsername("");
+      setError(error.message);
+    }
+  };
+
   useEffect(() => {
     document.title = "Instagram - Sign Up";
   }, []);
