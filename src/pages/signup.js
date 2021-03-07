@@ -71,7 +71,9 @@ export default function Signup() {
               className="mt-2 w-6/12 mb-4"
             />
           </h1>
-          {error && <p className="mb-4 text-xs text-red-500">{error}</p>}
+          {error && (
+            <p className="mb-4 text-xs text-red-500 text-center">{error}</p>
+          )}
           <form method="POST" onSubmit={handleSignup}>
             <input
               aria-label="Enter your username"
