@@ -43,6 +43,8 @@ export default function Signup() {
           history.push(ROUTES.DASHBOARD);
         } catch (error) {
           setName("");
+          setEmailAddress("");
+          setPassword("");
           setError(error.message);
         }
       } else {
