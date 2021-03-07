@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 
-export default Sidebar(){
+export default function Sidebar(){
   useEffect(() => {
 
   }, []);
 
   return (
-
+    <p>I am the sidebar</p>
   )
 };
