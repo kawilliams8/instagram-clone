@@ -2,13 +2,13 @@ import React, { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import FirebaseContext from "../context/firebase";
+import UserContext from "../context/user";
 
 export default function Header() {
   const { firebase } = useContext(FirebaseContext);
+  const { user } = useContext(UserContext);
+  const { uid, displayName, email, photoUrl } = user;
   const history = useHistory();
-  const user = {
-    displayName: 'raphael'
-  };
 
   return (
     <header className="h-16 bg-white border-b mb-8">
