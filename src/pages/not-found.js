@@ -2,8 +2,14 @@ import React, { useEffect } from "react";
 
 export default function NotFound() {
   useEffect(() => {
-    document.title = "Instagram - Login";
+    document.title = "Instagram - 404 - Not Found";
   }, []);
 
-  return <p>Hello from NotFound</p>;
+  return (
+    <div className="bg-gray-100">
+      <div className="mx-auto max-w-screen-lg">
+        <p className="text-center text-2xl">Uh oh! This page not found.</p>
+      </div>
+    </div>
+  );
 }
