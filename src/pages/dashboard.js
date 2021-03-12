@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import UserContext from '../context/user.js';
 import Header from "../components/Header.js";
 import Timeline from "../components/Timeline.js";
 import Sidebar from "../components/sidebar/Sidebar.js";
