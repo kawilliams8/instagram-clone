@@ -1,11 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 export default function Timeline () {
-  useEffect(() => {
-
-  }, []);
+  const photos = null;
 
   return (
-    <p>I am the timeline</p>
-  )
+    <>
+      {!photos ? (
+        <SkeletonTheme color="white" highlightColor="#efefef">
+          <Skeleton count={4} width={640} height={500} className="mb-5"/>
+        </SkeletonTheme>
+      ): (
+        photos.map(photo => <p>{photo}</p>)
+      )}
+    </>
+  );
 };
