@@ -1,8 +1,9 @@
 import React from "react";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import useFollowedUsersPhotos from '../hooks/use-followed-users-photos';
 
 export default function Timeline () {
-  const photos = null;
+  const { photos } = useFollowedUsersPhotos();
 
   return (
     <>
