@@ -17,7 +17,7 @@ module.exports = {
     rules: [
       {
         // for any file with a suffix of js or jsx
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         // ignore transpiling JavaScript from node_modules as it should be that state
         exclude: /node_modules/,
         // use the babel-loader for transpiling JavaScript to a suitable format
@@ -28,6 +28,9 @@ module.exports = {
         },
       },
     ],
+  },
+  resolve: {
+    extensions: ["*", ".js", ".jsx"],
   },
   devServer: {
     historyApiFallback: true,
