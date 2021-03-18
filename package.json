@@ -4,7 +4,7 @@
   "description": "An Instagram clone app built with React, Hooks, Router, Tailwind and Firebase.",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "start": "webpack serve --open",
     "build": "webpack"
   },
@@ -30,10 +30,16 @@
     "@babel/core": "^7.12.17",
     "@babel/preset-env": "^7.12.17",
     "@babel/preset-react": "^7.12.13",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
     "html-webpack-plugin": "^5.2.0",
+    "jest": "^26.6.3",
+    "react-test-renderer": "^16.14.0",
     "webpack": "^5.23.0",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"
+  },
+  "jest": {
+    "verbose": true
   }
 }
