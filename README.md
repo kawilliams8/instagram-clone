@@ -12,6 +12,7 @@ This project is an in-depth Instagram clone app, built in React. It follows an A
 - Firebase Authentication
 - Cloud Firestore
 - Tailwind CSS
+- Hero Icons
 - Babel
 - Webpack
 
