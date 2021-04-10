@@ -11,8 +11,12 @@ export default function Timeline () {
         <SkeletonTheme color="white" highlightColor="#efefef">
           <Skeleton count={4} width={640} height={500} className="mb-5"/>
         </SkeletonTheme>
-      ): (
-        photos.map(photo => <img key={photo.docId} src={photo.imageSrc}></img>)
+      ) : photos && photos.length > 0 ? (
+        photos.map((photo) => (
+          <p key={photo.docId} src={photo.imageSrc}>{photo.username}</p>
+        ))
+      ) : (
+        <p className="text-center text-2xl">Follow people to see photos!</p>
       )}
     </>
   );
