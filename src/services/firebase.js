@@ -10,7 +10,7 @@ export async function doesUsernameExist(username) {
   return result.docs.map((user) => user.data().length > 0);
 }
 
-export async function getUserByUserId(id) {
+export async function getUserByUserId(id=0) {
   const result = await firebase
     .firestore()
     .collection("users")
@@ -25,7 +25,7 @@ export async function getUserByUserId(id) {
   return user;
 }
 
-export async function getUserFollowedPhotos(userId, followingUserIds) {
+export async function getUserFollowedPhotos(userId, followingUserIds=[]) {
   const result = await firebase
     .firestore()
     .collection("photos")
@@ -36,7 +36,6 @@ export async function getUserFollowedPhotos(userId, followingUserIds) {
       ...item.data(),
       docId: item.id,
     }));
-
-  //console.log('userFollowedPhotos', userFollowedPhotos)
+  
   return userFollowedPhotos;
 }

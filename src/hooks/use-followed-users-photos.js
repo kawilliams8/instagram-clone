@@ -8,9 +8,10 @@ export default function useFollowedUsersPhotos() {
 
   useEffect(() => {
     async function getTimelinePhotos() {
-      const followingUserIds = await getUserByUserId(user.uid);
+      if (user) { var uid = user.uid }
+      const followingUserIds = await getUserByUserId(uid);
 
-      if (followingUserIds && followingUserIds[0].following.length > 0) {
+      if (followingUserIds[0] && followingUserIds[0].following.length > 0) {
         const followedUserPhotos = await getUserFollowedPhotos(
           user.uid,
           followingUserIds[0].following
@@ -20,8 +21,9 @@ export default function useFollowedUsersPhotos() {
         setPhotos(followedUserPhotos);
       }
     }
+
     getTimelinePhotos();
   }, [user]);
 
-  return { photos: photos };
+  return { photos };
 }
