@@ -32,3 +32,9 @@ This project is an in-depth Instagram clone app, built in React. It follows an A
 1. The seed.js file will seed the Firebase database, but requires a src/lib/firebase.js file with your Firebase secret keys, provided in their Dashboard. The seed function will automatically run each time the build process runs if configured correctly -- comment it out once complete!
 1. Create a Firebase project and enable the email/password provider. Add yourself as a user.
 1. Run `npm start` to view the app in your browser.
+
+## Results
+
+![SignUp Page]('/images/screenshots/Screen Shot 2021-04-10 at 11.30.41 AM.png)
+
+![Login Page]('/images/screenshots/Screen Shot 2021-04-10 at 11.30.35 AM.png)
