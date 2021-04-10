@@ -12,7 +12,7 @@ export default function Timeline () {
           <Skeleton count={4} width={640} height={500} className="mb-5"/>
         </SkeletonTheme>
       ): (
-        photos.map(photo => <p key={photo.docId}>{photo.docId}</p>)
+        photos.map(photo => <img key={photo.docId} src={photo.imageSrc}></img>)
       )}
     </>
   );
