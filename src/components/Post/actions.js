@@ -6,9 +6,23 @@ export default function Action({docId, totalLikes, likedPhoto, handleFocus }) {
   const [toggleLiked, setToggleLiked] = useState(likedPhoto);
   const [likes, setLikes] = useState(totalLikes);
   const { firebase, FieldValue } = useContext(FirebaseContext);
+  const { user } = useContext(UserContext);
 
-  const handleToggleLiked = async (toggleLiked) => {
-    setToggleLiked(toggleLiked);
+  const handleToggleLiked = async () => {
+    setToggleLiked(toggleLiked => !toggleLiked);
+    const userId = user.uid;
+
+    await firebase
+      .firestore()
+      .collection("photos")
+      .doc(docId)
+      .update({
+        likes: toggleLiked
+          ? FieldValue.arrayRemove(userId)
+          : FieldValue.arrayUnion(userId),
+      });
+
+    setLikes((likes) => (toggleLiked ? likes -1 : likes +1));
   };
 
   return (
@@ -16,10 +30,10 @@ export default function Action({docId, totalLikes, likedPhoto, handleFocus }) {
       <div className="flex justify-between p4-">
         <div className="flex">
           <svg
-            onClick={() => handleToggleLiked((toggleLiked) => !toggleLiked)}
+            onClick={() => handleToggleLiked(toggleLiked => !toggleLiked)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                handleToggleLiked((toggleLiked) => !toggleLiked);
+                handleToggleLiked(toggleLiked => !toggleLiked);
               }
             }}
             className={`w-8 mr-4 select-none cursor-pointer ${
