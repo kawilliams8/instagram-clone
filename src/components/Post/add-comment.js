@@ -24,7 +24,27 @@ export default function AddComment({ docId, comments, setComments, commentInput}
 
   return (
     <div className="border-t border-gray">
-      <p>new comment form goes here</p>
+      <form className="flex w-full justify-between border-gray">
+        <input
+          aria-label="Add a comment"
+          autoComplete="off"
+          className="text-sm text-gray w-full mr-3 py-3 px-4"
+          type="text"
+          name="add-comment"
+          placeholder="Add a comment..."
+          value={comment}
+          onChange={({ target }) => setComment(target.value)}
+          ref={commentInput}
+        />
+        <button
+          className={`text-sm font-bold text-blue-500 mr-5 ${!comment && "opacity-25"}`}
+          type="button"
+          disabled={comment.length < 1}
+          onClick={handleSubmitComment}
+        >
+          Post
+        </button>
+      </form>
     </div>
   );
 }
