@@ -39,3 +39,5 @@ This project is an in-depth Instagram clone app, built in React. It follows an A
 ![SignUp Page](https://github.com/kawilliams8/instagram-clone/blob/d2f4662ab9deda85546a036797a52d5f332731ad/images/screenshots/Screen%20Shot%202021-04-10%20at%2011.30.35%20AM.png)
 
 ![Login Page](https://github.com/kawilliams8/instagram-clone/blob/d2f4662ab9deda85546a036797a52d5f332731ad/images/screenshots/Screen%20Shot%202021-04-10%20at%2011.30.41%20AM.png)
+
+![Posts in Feed](https://github.com/kawilliams8/instagram-clone/blob/ec151c9b2a7095f6832e588886dd8f407c5b0871/images/screenshots/Screen%20Shot%202021-04-11%20at%205.48.20%20PM.png)
