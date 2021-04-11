@@ -24,8 +24,8 @@ export default function Post({ content }) {
         likedPhoto={content.userLikedPhoto}
         handleFocus={handleFocus}
       />
-      <Comments docId={content.docId} allComments={content.comments} posted={content.dateCreated} commentInput={commentInput}/>
       <Footer username={content.username} caption={content.caption} />
+      <Comments docId={content.docId} allComments={content.comments} posted={content.dateCreated} commentInput={commentInput}/>
     </div>
   );
 }
