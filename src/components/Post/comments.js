@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { formatDistance } from "date-fns";
 import AddComment from "./add-comment";
 
 export default function Comments({ docId, allComments, posted, commentInput }){
@@ -14,11 +15,16 @@ export default function Comments({ docId, allComments, posted, commentInput }){
       {comments.slice(0, 2).map((comment, i) => {
         return (
           <div key={i} className="mb-1">
-            <Link to={`/p/${comment.displayName}`} className="font-bold pr-2">{comment.displayName}</Link>
+            <Link to={`/p/${comment.displayName}`} className="font-bold pr-2">
+              {comment.displayName}
+            </Link>
             {comment.comment}
           </div>
         );
       })}
+      <p className="text-gray-500 uppercase text-xs mt-2">
+        {formatDistance(posted, new Date())} ago
+      </p>
     </div>
   );
 }
