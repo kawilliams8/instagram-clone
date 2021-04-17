@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
@@ -28,4 +28,7 @@ const User = ({ username, fullName}) => {
   );
 }
 
-export default User;
+//Memoize to re-use the last rendered component, until props update
+//Relies on shallow comparison of props
+//Similar goal as shouldComponentUpdate()
+export default memo(User);
