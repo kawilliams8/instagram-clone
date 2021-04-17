@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
-export const User = ({ username, fullName}) => {
+const User = ({ username, fullName}) => {
 
   return (
   !username || !fullName ? (
@@ -16,3 +16,5 @@ export const User = ({ username, fullName}) => {
   )
   )
 }
+
+export default User;
