@@ -53,7 +53,7 @@ export async function getUserFollowedPhotos(userId, followingUserIds=[]) {
 }
 
 export async function getSuggestedProfiles() {
-  
+  let suggestedProfiles = [];
 
   return suggestedProfiles;
 }
