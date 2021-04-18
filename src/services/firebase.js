@@ -51,3 +51,50 @@ export async function getUserFollowedPhotos(userId, followingUserIds=[]) {
   
   return photosWithUserDetails;
 }
+
+export async function getSuggestedProfiles(userId) {
+  const result = await firebase
+    .firestore()
+    .collection("users")
+    .limit(3)
+    .get();
+
+    //First, get the array of whom the current user already follows
+    const [{following}] = result.docs
+    .map(user => user.data())
+    .filter(profile => profile.userId === userId)
+    
+    //Suggest people not already followed, and not self
+    let suggestedProfiles = result.docs
+      .map(user => ({ ...user.data(), docId: user.id }))
+      .filter(profile => profile.userId !== userId && !following.includes(profile.userId));
+
+  return suggestedProfiles;
+}
+
+export async function updateUserFollowing(docId, profileId, isFollowingProfile){
+    return firebase
+      .firestore()
+      .collection("users")
+      .doc(docId)
+      .update({
+        following: isFollowingProfile
+          //If already following, unfollow
+          ? FieldValue.arrayRemove(profileId)
+          //If not yet following, follow now
+          : FieldValue.arrayUnion(profileId),
+      });
+}
+
+export async function updateFollowedUserFollowers(docId, followingUserId, isFollowingProfile) {
+    return firebase
+      .firestore()
+      .collection("users")
+      .doc(docId)
+      .update({
+        following: isFollowingProfile
+          //Likewise, update the arrays of the person I follow/unfollow
+          ? FieldValue.arrayRemove(followingUserId)
+          : FieldValue.arrayUnion(followingUserId),
+      });
+}
