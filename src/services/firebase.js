@@ -71,3 +71,30 @@ export async function getSuggestedProfiles(userId) {
 
   return suggestedProfiles;
 }
+
+export async function updateUserFollowing(docId, profileId, isFollowingProfile){
+    return firebase
+      .firestore()
+      .collection("users")
+      .doc(docId)
+      .update({
+        following: isFollowingProfile
+          //If already following, unfollow
+          ? FieldValue.arrayRemove(profileId)
+          //If not yet following, follow now
+          : FieldValue.arrayUnion(profileId),
+      });
+}
+
+export async function updateFollowedUserFollowers(docId, followingUserId, isFollowingProfile) {
+    return firebase
+      .firestore()
+      .collection("users")
+      .doc(docId)
+      .update({
+        following: isFollowingProfile
+          //Likewise, update the arrays of the person I follow/unfollow
+          ? FieldValue.arrayRemove(followingUserId)
+          : FieldValue.arrayUnion(followingUserId),
+      });
+}
