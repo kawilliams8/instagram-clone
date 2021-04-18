@@ -22,7 +22,7 @@ export async function getUserByUsername(username) {
     docId: item.id,
   }));
 
-  return user;
+  return user.length > 0 ? user : false;
 }
 
 export async function getUserByUserId(id=0) {

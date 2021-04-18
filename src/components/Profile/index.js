@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
+import ProfileHeader from './profileHeader';
+import ProfilePhotos from './profilePhotos';
 
-export default function Profile({username}) {
+export default function UserProfile({username}) {
 
   return (
-    <p>Profile Here</p>
+    <div>
+      <ProfileHeader/>
+      <ProfilePhotos />
+    </div>
   )
 }

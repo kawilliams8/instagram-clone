@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
-import Header from "../components/header.js";
+import Header from "../components/Header";
+import UserProfile from '../components/Profile';
 import { getUserByUsername } from '../services/firebase';
+import "@babel/polyfill";
 
 export default function Profile() {
   const { username } = useParams();
-  const [userExists, setUserExists] = (undefined);
+  const [userExists, setUserExists] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -21,9 +23,14 @@ export default function Profile() {
     checkUserExistsToLoadProfile();
   }, [username, history]);
 
-  return (
-    <>
+  return userExists ? (
+    <div className="bg-gray">
       <Header />
-    </>
+      <div className="mx-auto max-w-screen-lg">
+        <UserProfile username={username} />
+      </div>
+    </div>
+  ) : (
+    null
   );
 }
