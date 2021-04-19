@@ -23,14 +23,27 @@ export default function UserProfile({username}) {
     async function getProfileAndPhotos() {
       const [{ ...user } ] = await getUserByUsername(username);
       const photos = await getPhotosByUsername(username);
+
+      //Dispatch the new state, matched obj to initialState 
+      dispatch({
+        profile: user,
+        photosCollection: photos,
+        followerCount: user.followers.length,
+      });
     }
     getProfileAndPhotos();
   }, [username])
 
   return (
     <div>
-      <ProfileHeader/>
-      <ProfilePhotos />
+      <ProfileHeader
+        //Pass state and the dispatch so the child component can update Profile state
+        photosCollection={photosCollection.length}
+        profile={profile}
+        followerCount={followerCount}
+        setFollowerCount={dispatch}
+      />
+      <ProfilePhotos photos={photosCollection} />
     </div>
   )
 }
