@@ -113,3 +113,17 @@ export async function updateFollowedUserFollowers(docId, followingUserId, isFoll
           : FieldValue.arrayUnion(followingUserId),
       });
 }
+
+export async function getPhotosByUsername(username) {
+  const user = await getUserByUsername(username);
+  const [{ userId }] = user;
+
+  const result = await firebase
+    .firestore()
+    .collection("photos")
+    .where("userId", "==", userId)
+    .get()
+
+  const photos = result.docs.map(item => ({...item.data(), docId: item.docId}))
+  return photos.length > 0 ? photos : null;
+}
