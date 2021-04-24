@@ -38,7 +38,7 @@ export default function UserProfile({username}) {
     <div>
       <ProfileHeader
         //Pass state and the dispatch so the child component can update Profile state
-        photosCount={photos.length || 0}
+        photosCount={photos ? photos.length : 0}
         profile={profile}
         followerCount={followerCount}
         setFollowerCount={dispatch}
