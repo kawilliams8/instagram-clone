@@ -27,7 +27,7 @@ export default function UserProfile({username}) {
       //Dispatch the new state, matched obj to initialState 
       dispatch({
         profile: user,
-        photosCollection: photos,
+        photos: photos,
         followerCount: user.followers.length,
       });
     }
@@ -38,12 +38,12 @@ export default function UserProfile({username}) {
     <div>
       <ProfileHeader
         //Pass state and the dispatch so the child component can update Profile state
-        photosCollection={photosCollection.length}
+        photosCount={photos.length || 0}
         profile={profile}
         followerCount={followerCount}
         setFollowerCount={dispatch}
       />
-      <ProfilePhotos photos={photosCollection} />
+      <ProfilePhotos photos={photos} />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-export default function ProfileHeader() {
+export default function ProfileHeader({photosCount}) {
   return (
-    <p>Profile Header here</p>
+    <p>{photosCount}</p>
   )
 }
