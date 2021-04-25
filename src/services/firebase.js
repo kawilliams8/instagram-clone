@@ -10,6 +10,21 @@ export async function doesUsernameExist(username) {
   return result.docs.map((user) => user.data().length > 0);
 }
 
+export async function getUserByUsername(username) {
+  const result = await firebase
+    .firestore()
+    .collection("users")
+    .where("username", "==", username)
+    .get();
+
+  const user = result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+
+  return user.length > 0 ? user : false;
+}
+
 export async function getUserByUserId(id=0) {
   const result = await firebase
     .firestore()
@@ -92,9 +107,54 @@ export async function updateFollowedUserFollowers(docId, followingUserId, isFoll
       .collection("users")
       .doc(docId)
       .update({
-        following: isFollowingProfile
+        followers: isFollowingProfile
           //Likewise, update the arrays of the person I follow/unfollow
           ? FieldValue.arrayRemove(followingUserId)
           : FieldValue.arrayUnion(followingUserId),
       });
+}
+
+export async function getPhotosByUsername(username) {
+  const user = await getUserByUsername(username);
+  const [{ userId }] = user;
+
+  const result = await firebase
+    .firestore()
+    .collection("photos")
+    .where("userId", "==", userId)
+    .get()
+
+  const photos = result.docs.map(item => ({...item.data(), docId: item.docId}))
+  return photos.length > 0 ? photos : null;
+}
+
+export async function toggleFollow(
+  isFollowing,
+  currentUserDocId,
+  currentUserId,
+  targetUserDocId,
+  targetProfileId
+) {
+  //First, update docs for the active user
+  await updateUserFollowing(currentUserDocId, targetProfileId, isFollowing);
+  //Then, update the target user's docds
+  await updateFollowedUserFollowers(targetUserDocId, currentUserId, isFollowing);
+}
+
+export async function isUserFollowingProfile(currentUsername, targetUserId) {
+  const result = await firebase
+    .firestore()
+    .collection("users")
+    .where("username", "==", currentUsername)
+    .where("following", "array-contains", targetUserId)
+    .get();
+
+  const [response = {}] = result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+
+  //Cast the presence of the fullName string to Boolean
+  //The fullName itself doesn't matter, just it's existence or not
+  return !!response.fullName;
 }
