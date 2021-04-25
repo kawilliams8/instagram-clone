@@ -140,3 +140,21 @@ export async function toggleFollow(
   //Then, update the target user's docds
   await updateFollowedUserFollowers(targetUserDocId, currentUserId, isFollowing);
 }
+
+export async function isUserFollowingProfile(currentUsername, targetUserId) {
+  const result = await firebase
+    .firestore()
+    .collection("users")
+    .where("username", "==", currentUsername)
+    .where("following", "array-contains", targetUserId)
+    .get();
+
+  const [response = {}] = result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+
+  //Cast the presence of the fullName string to Boolean
+  //The fullName itself doesn't matter, just it's existence or not
+  return !!response.fullName;
+}
