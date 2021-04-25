@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import useUser from "../../hooks/use-user";
 import Skeleton from "react-loading-skeleton";
+import { toggleFollow } from "../../services/firebase";
 
 export default function ProfileHeader({
   photosCount,
@@ -16,6 +17,7 @@ export default function ProfileHeader({
   const handleToggleFollow = async () => {
     setIsFollowingProfile(isFollowingProfile => !isFollowingProfile);
     setFollowerCount({ followerCount : isFollowingProfile ? followerCount - 1 : followerCount + 1})
+    await toggleFollow(isFollowingProfile, user.docId, user.userId, profile.docId, profile.userId);
   }
   
   return (
@@ -36,7 +38,7 @@ export default function ProfileHeader({
               type="button"
               onClick={() => handleToggleFollow()}
             >
-              {true ? "Unfollow" : "Follow"}
+              {isFollowingProfile ? "Unfollow" : "Follow"}
             </button>
           )}
         </div>

@@ -127,3 +127,16 @@ export async function getPhotosByUsername(username) {
   const photos = result.docs.map(item => ({...item.data(), docId: item.docId}))
   return photos.length > 0 ? photos : null;
 }
+
+export async function toggleFollow(
+  isFollowing,
+  currentUserDocId,
+  currentUserId,
+  targetUserDocId,
+  targetProfileId
+) {
+  //First, update docs for the active user
+  await updateUserFollowing(currentUserDocId, currentUserId, isFollowing);
+  //Then, update the target user's docds
+  await updateFollowedUserFollowers(targetUserDocId, currentUserId, isFollowing);
+}
