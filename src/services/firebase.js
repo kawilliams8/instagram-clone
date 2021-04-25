@@ -107,7 +107,7 @@ export async function updateFollowedUserFollowers(docId, followingUserId, isFoll
       .collection("users")
       .doc(docId)
       .update({
-        following: isFollowingProfile
+        followers: isFollowingProfile
           //Likewise, update the arrays of the person I follow/unfollow
           ? FieldValue.arrayRemove(followingUserId)
           : FieldValue.arrayUnion(followingUserId),
@@ -136,7 +136,7 @@ export async function toggleFollow(
   targetProfileId
 ) {
   //First, update docs for the active user
-  await updateUserFollowing(currentUserDocId, currentUserId, isFollowing);
+  await updateUserFollowing(currentUserDocId, targetProfileId, isFollowing);
   //Then, update the target user's docds
   await updateFollowedUserFollowers(targetUserDocId, currentUserId, isFollowing);
 }
